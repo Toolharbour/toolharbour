@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Countdown Timer | Toolharbour</title>
+  <meta name="description" content="Set a countdown in minutes and seconds.">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <main class="tool-shell">
+    <div class="tool-header">
+      <a href="../index.html">← Toolharbour</a>
+      <span class="small">Free online tool</span>
+    </div>
+    <section class="tool-panel">
+      <h1>Countdown Timer</h1>
+      <p class="small">Set a countdown in minutes and seconds.</p>
+      <label>Minutes</label><input id="min" type="number" value="5" min="0">
+<label>Seconds</label><input id="sec" type="number" value="0" min="0" max="59">
+<div class="big-time" id="display">05:00</div>
+<button onclick="start()">Start</button><button class="alt" onclick="reset()">Reset</button>
+    </section>
+  </main>
+  <script>let timer=null,total=300;
+function show(){let m=Math.floor(total/60), s=total%60; document.getElementById('display').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;}
+function start(){clearInterval(timer); total=(+min.value||0)*60+(+sec.value||0); show(); timer=setInterval(()=>{if(total<=0){clearInterval(timer); alert('Time is up'); return;} total--; show();},1000);}
+function reset(){clearInterval(timer); total=(+min.value||0)*60+(+sec.value||0); show();} reset();</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tip Calculator | Toolharbour</title>
+  <meta name="description" content="Split a bill and calculate tips.">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <main class="tool-shell">
+    <div class="tool-header">
+      <a href="../index.html">← Toolharbour</a>
+      <span class="small">Free online tool</span>
+    </div>
+    <section class="tool-panel">
+      <h1>Tip Calculator</h1>
+      <p class="small">Split a bill and calculate tips.</p>
+      <label>Bill total</label><input id="bill" type="number" value="50"><label>Tip %</label><input id="tip" type="number" value="10"><label>People</label><input id="people" type="number" value="2"><button onclick="calc()">Calculate</button><div class="result" id="result">Result will appear here.</div>
+    </section>
+  </main>
+  <script>function calc(){let total=+bill.value*(1+(+tip.value/100)); result.textContent=`Total: £${total.toFixed(2)} | Each: £${(total/(+people.value||1)).toFixed(2)}`;}</script>
+</body>
+</html>

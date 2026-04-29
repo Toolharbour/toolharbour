@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BMI Calculator | Toolharbour</title>
+  <meta name="description" content="Calculate BMI from height and weight.">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <main class="tool-shell">
+    <div class="tool-header">
+      <a href="../index.html">← Toolharbour</a>
+      <span class="small">Free online tool</span>
+    </div>
+    <section class="tool-panel">
+      <h1>BMI Calculator</h1>
+      <p class="small">Calculate BMI from height and weight.</p>
+      <label>Weight (kg)</label><input id="kg" type="number" value="75"><label>Height (cm)</label><input id="cm" type="number" value="175"><button onclick="calc()">Calculate BMI</button><div class="result" id="result">Result will appear here.</div>
+    </section>
+  </main>
+  <script>function calc(){let h=(+cm.value)/100; let bmi=(+kg.value)/(h*h); result.textContent=`BMI: ${bmi.toFixed(1)}`;}</script>
+</body>
+</html>

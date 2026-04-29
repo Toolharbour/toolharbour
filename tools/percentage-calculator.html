@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Percentage Calculator | Toolharbour</title>
+  <meta name="description" content="Work out percentages quickly and clearly.">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <main class="tool-shell">
+    <div class="tool-header">
+      <a href="../index.html">← Toolharbour</a>
+      <span class="small">Free online tool</span>
+    </div>
+    <section class="tool-panel">
+      <h1>Percentage Calculator</h1>
+      <p class="small">Work out percentages quickly and clearly.</p>
+      <label>What is</label><input id="percent" type="number" value="20"><label>% of</label><input id="number" type="number" value="100"><button onclick="calc()">Calculate</button><div class="result" id="result">Result will appear here.</div>
+    </section>
+  </main>
+  <script>function calc(){result.textContent=`${percent.value}% of ${number.value} = ${((+percent.value/100)*(+number.value)).toFixed(2)}`;}</script>
+</body>
+</html>

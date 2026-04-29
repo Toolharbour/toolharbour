@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stopwatch | Toolharbour</title>
+  <meta name="description" content="A simple browser stopwatch for quick timing.">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <main class="tool-shell">
+    <div class="tool-header">
+      <a href="../index.html">← Toolharbour</a>
+      <span class="small">Free online tool</span>
+    </div>
+    <section class="tool-panel">
+      <h1>Stopwatch</h1>
+      <p class="small">A simple browser stopwatch for quick timing.</p>
+      <div class="big-time" id="display">00:00:00</div>
+<button onclick="start()">Start</button><button class="alt" onclick="stop()">Stop</button><button class="alt" onclick="reset()">Reset</button>
+    </section>
+  </main>
+  <script>let startTime=0, elapsed=0, timer=null;
+function fmt(ms){let s=Math.floor(ms/1000), h=Math.floor(s/3600); s%=3600; let m=Math.floor(s/60); s%=60; return [h,m,s].map(x=>String(x).padStart(2,'0')).join(':');}
+function tick(){document.getElementById('display').textContent=fmt(Date.now()-startTime+elapsed);}
+function start(){if(timer)return; startTime=Date.now(); timer=setInterval(tick,250);}
+function stop(){if(!timer)return; elapsed+=Date.now()-startTime; clearInterval(timer); timer=null; tick();}
+function reset(){clearInterval(timer); timer=null; elapsed=0; document.getElementById('display').textContent='00:00:00';}</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Age Calculator | Toolharbour</title>
+  <meta name="description" content="Calculate age from a date of birth.">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <main class="tool-shell">
+    <div class="tool-header">
+      <a href="../index.html">← Toolharbour</a>
+      <span class="small">Free online tool</span>
+    </div>
+    <section class="tool-panel">
+      <h1>Age Calculator</h1>
+      <p class="small">Calculate age from a date of birth.</p>
+      <label>Date of birth</label><input id="dob" type="date"><button onclick="calc()">Calculate age</button><div class="result" id="result">Result will appear here.</div>
+    </section>
+  </main>
+  <script>function calc(){let d=new Date(dob.value); if(isNaN(d)){result.textContent='Enter a valid date.'; return;} let n=new Date(); let age=n.getFullYear()-d.getFullYear(); let m=n.getMonth()-d.getMonth(); if(m<0||(m===0&&n.getDate()<d.getDate())) age--; result.textContent=`Age: ${age} years`; }</script>
+</body>
+</html>

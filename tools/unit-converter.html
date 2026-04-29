@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unit Converter | Toolharbour</title>
+  <meta name="description" content="Convert length, weight and temperature units.">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <main class="tool-shell">
+    <div class="tool-header">
+      <a href="../index.html">← Toolharbour</a>
+      <span class="small">Free online tool</span>
+    </div>
+    <section class="tool-panel">
+      <h1>Unit Converter</h1>
+      <p class="small">Convert length, weight and temperature units.</p>
+      <label>Value</label><input id="value" type="number" value="1">
+<label>Conversion</label><select id="type">
+<option value="km_miles">Kilometres to miles</option><option value="miles_km">Miles to kilometres</option>
+<option value="kg_lb">Kilograms to pounds</option><option value="lb_kg">Pounds to kilograms</option>
+<option value="c_f">Celsius to Fahrenheit</option><option value="f_c">Fahrenheit to Celsius</option>
+</select><button onclick="convert()">Convert</button><div class="result" id="result">Result will appear here.</div>
+    </section>
+  </main>
+  <script>function convert(){let v=+value.value, t=type.value, out=0, unit=''; if(t==='km_miles'){out=v*0.621371;unit=' miles'} if(t==='miles_km'){out=v/0.621371;unit=' km'} if(t==='kg_lb'){out=v*2.20462;unit=' lb'} if(t==='lb_kg'){out=v/2.20462;unit=' kg'} if(t==='c_f'){out=(v*9/5)+32;unit=' °F'} if(t==='f_c'){out=(v-32)*5/9;unit=' °C'} result.textContent=out.toFixed(2)+unit;}</script>
+</body>
+</html>

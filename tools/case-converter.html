@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Case Converter | Toolharbour</title>
+  <meta name="description" content="Change text to upper, lower or title case.">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <main class="tool-shell">
+    <div class="tool-header">
+      <a href="../index.html">← Toolharbour</a>
+      <span class="small">Free online tool</span>
+    </div>
+    <section class="tool-panel">
+      <h1>Case Converter</h1>
+      <p class="small">Change text to upper, lower or title case.</p>
+      <textarea id="text" placeholder="Type or paste text..."></textarea><button onclick="upper()">UPPERCASE</button><button onclick="lower()">lowercase</button><button onclick="titleCase()">Title Case</button>
+    </section>
+  </main>
+  <script>function upper(){text.value=text.value.toUpperCase()} function lower(){text.value=text.value.toLowerCase()} function titleCase(){text.value=text.value.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase())}</script>
+</body>
+</html>

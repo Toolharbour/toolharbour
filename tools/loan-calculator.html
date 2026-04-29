@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Loan Calculator | Toolharbour</title>
+  <meta name="description" content="Estimate monthly repayments.">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <main class="tool-shell">
+    <div class="tool-header">
+      <a href="../index.html">← Toolharbour</a>
+      <span class="small">Free online tool</span>
+    </div>
+    <section class="tool-panel">
+      <h1>Loan Calculator</h1>
+      <p class="small">Estimate monthly repayments.</p>
+      <label>Loan amount</label><input id="amount" type="number" value="10000"><label>Annual interest %</label><input id="rate" type="number" value="6"><label>Years</label><input id="years" type="number" value="5"><button onclick="calc()">Calculate</button><div class="result" id="result">Result will appear here.</div>
+    </section>
+  </main>
+  <script>function calc(){let p=+amount.value, r=(+rate.value/100)/12, n=(+years.value)*12; let payment=r===0?p/n:p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1); result.textContent=`Estimated monthly payment: £${payment.toFixed(2)}`;}</script>
+</body>
+</html>

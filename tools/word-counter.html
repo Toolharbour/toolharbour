@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Word Counter | Toolharbour</title>
+  <meta name="description" content="Count words, characters and sentences instantly.">
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <main class="tool-shell">
+    <div class="tool-header">
+      <a href="../index.html">← Toolharbour</a>
+      <span class="small">Free online tool</span>
+    </div>
+    <section class="tool-panel">
+      <h1>Word Counter</h1>
+      <p class="small">Count words, characters and sentences instantly.</p>
+      <textarea id="text" placeholder="Type or paste text here..."></textarea>
+<div class="result" id="result">Words: 0 | Characters: 0 | Sentences: 0</div>
+    </section>
+  </main>
+  <script>const t=document.getElementById('text'), r=document.getElementById('result');
+function update(){let s=t.value.trim();let words=s? s.split(/\s+/).length:0;let chars=t.value.length;let sentences=s? (s.match(/[.!?]+/g)||[]).length:0;r.textContent=`Words: ${words} | Characters: ${chars} | Sentences: ${sentences}`;}
+t.addEventListener('input',update);</script>
+</body>
+</html>
