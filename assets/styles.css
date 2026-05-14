@@ -22,6 +22,7 @@ a{color:inherit;}
 .hero{
   background:#0f172a;
   color:white;
+  opacity:1;
   padding:72px 20px 56px;
   border-bottom:1px solid #1e293b;
 }
