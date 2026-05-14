@@ -127,12 +127,12 @@ button.alt{background:#475569}
   padding:40px 20px;
   text-align:center;
   color:#c5cad6;
-  border-top: 1px solid #2a2f3a
+  border-top: 1px solid #2a2f3a;
     margin-top:60px;
   font-size:95rem;
   background:#10131c;
-  text-decoration:none
-  margin:0 8px
+  text-decoration:none;
+  margin:0 8px;
 }
 .footer a{
   color:#ffffff;
