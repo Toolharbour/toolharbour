@@ -124,18 +124,23 @@ button.alt{background:#475569}
   text-align:center;
 }
 .footer{
-  padding:48px 20px 36px;
+  padding:40px 20px;
   text-align:center;
-  color:#64748b;
-  border-top: 1px solid #e2e8f0
-    margin-top:48px;
+  color:#c5cad6;
+  border-top: 1px solid #2a2f3a
+    margin-top:60px;
   font-size:95rem;
-  background:#ffffff;
+  background:#10131c;
+  text-decoration:none
+  margin:0 8px
 }
 .footer a{
-  colour:#475569;
-  text-decoration:none
-    margin:0 6px
+  color:#ffffff;
+  text-decoration:none;
+    margin:0 8px;
+}
+  .footer a:hover{
+    color#4da3ff;
 }
   
 
