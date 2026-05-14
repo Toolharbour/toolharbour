@@ -20,7 +20,7 @@ body{
 }
 a{color:inherit;}
 .hero{
-  background:linear-gradient(135deg,#0f172a,#le3a8a);
+  background:#0f172a;
   color:white;
   padding:72px 20px 56px;
   border-bottom:1px solid #1e293b;
