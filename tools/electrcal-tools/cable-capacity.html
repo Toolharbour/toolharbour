@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cable Capacity Reference Tool | Morlich Co Electrical Tools</title>
+<meta name="description" content="Reference approximate current capacities for common copper conductor sizes.">
+<meta name="keywords" content="cable capacity calculator, cable amp rating calculator">
+<link rel="stylesheet" href="morlich-electrical-tools.css">
+</head>
+<body>
+<header>
+<h1>Cable Capacity Reference Tool</h1>
+<p>Reference approximate current capacities for common copper conductor sizes.</p>
+<nav>
+<a href="electrical-tools-index.html">Electrical Tools</a>
+<a href="ohms-law-wheel.html">Ohm’s Law</a>
+<a href="voltage-drop.html">Voltage Drop</a>
+<a href="power-consumption.html">Power Cost</a>
+</nav>
+</header>
+<main class="container">
+<section class="card">
+
+<div class="grid">
+<div><label>Copper Cable Size</label><select id="size">
+<option value="1">1.0 mm²</option><option value="1.5">1.5 mm²</option><option value="2.5">2.5 mm²</option><option value="4">4 mm²</option><option value="6">6 mm²</option><option value="10">10 mm²</option><option value="16">16 mm²</option><option value="25">25 mm²</option><option value="35">35 mm²</option><option value="50">50 mm²</option>
+</select></div>
+</div>
+<button onclick="calc()">Show Approximate Capacity</button>
+<div class="result" id="out">Select a cable size.</div>
+
+<div class="assumptions"><strong>Assumptions:</strong> This tool uses simplified calculation methods for quick reference. Actual electrical design depends on installation method, conductor type, ambient temperature, grouping, protective device characteristics, cable route, fault conditions and the regulations in force.</div>
+<div class="disclaimer"><strong>Safety notice:</strong> Guidance only. Electrical work must be designed, installed, inspected and tested by competent persons in accordance with applicable regulations and local requirements. Do not use this tool as a substitute for professional design, certification or inspection.</div>
+</section>
+<section class="related">
+<h2>Related Electrical Tools</h2>
+<ul><li><a href="ohms-law-wheel.html">Interactive Ohm’s Law Wheel</a></li>
+<li><a href="watts-volts-amps.html">Watts Volts Amps Calculator</a></li>
+<li><a href="power-triangle.html">Power Triangle Calculator</a></li>
+<li><a href="voltage-drop.html">Voltage Drop Calculator</a></li>
+<li><a href="dc-voltage-drop.html">DC Voltage Drop Calculator</a></li></ul>
+</section>
+</main>
+<footer class="footer">
+<p>© 2026 Morlich Co. Electrical tools for general guidance only.</p>
+</footer>
+<script>
+
+const table={1:11,1.5:14.5,2.5:20,4:26,6:34,10:46,16:61,25:80,35:99,50:119};
+function calc(){
+ let s=parseFloat(size.value), cap=table[s];
+ out.innerHTML=`<strong>Approximate Reference Capacity:</strong> ${cap} A<br><span class="warn">This is simplified reference guidance only. Installation method, insulation, grouping, ambient temperature and regulations can significantly change allowable current.</span>`;
+}
+
+</script>
+</body>
+</html>

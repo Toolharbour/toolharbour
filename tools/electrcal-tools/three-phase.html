@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3-Phase Calculator | Morlich Co Electrical Tools</title>
+<meta name="description" content="Calculate three-phase current, power, voltage and apparent power estimates.">
+<meta name="keywords" content="3 phase calculator, three phase amps kW kVA calculator">
+<link rel="stylesheet" href="morlich-electrical-tools.css">
+</head>
+<body>
+<header>
+<h1>3-Phase Calculator</h1>
+<p>Calculate three-phase current, power, voltage and apparent power estimates.</p>
+<nav>
+<a href="electrical-tools-index.html">Electrical Tools</a>
+<a href="ohms-law-wheel.html">Ohm’s Law</a>
+<a href="voltage-drop.html">Voltage Drop</a>
+<a href="power-consumption.html">Power Cost</a>
+</nav>
+</header>
+<main class="container">
+<section class="card">
+
+<div class="grid">
+<div><label>Find</label><select id="mode"><option value="amps">Current from kW</option><option value="kw">kW from Current</option><option value="kva">kVA from Current</option></select></div>
+<div><label>Line Voltage (V)</label><input id="volts" type="number" step="any" value="400"></div>
+<div><label>Current (A)</label><input id="amps" type="number" step="any" placeholder="e.g. 32"></div>
+<div><label>Power (kW)</label><input id="kw" type="number" step="any" placeholder="e.g. 15"></div>
+<div><label>Power Factor</label><input id="pf" type="number" step="any" value="0.8"></div>
+</div>
+<button onclick="calc()">Calculate</button>
+<div class="result" id="out">Results will appear here.</div>
+
+<div class="assumptions"><strong>Assumptions:</strong> This tool uses simplified calculation methods for quick reference. Actual electrical design depends on installation method, conductor type, ambient temperature, grouping, protective device characteristics, cable route, fault conditions and the regulations in force.</div>
+<div class="disclaimer"><strong>Safety notice:</strong> Guidance only. Electrical work must be designed, installed, inspected and tested by competent persons in accordance with applicable regulations and local requirements. Do not use this tool as a substitute for professional design, certification or inspection.</div>
+</section>
+<section class="related">
+<h2>Related Electrical Tools</h2>
+<ul><li><a href="ohms-law-wheel.html">Interactive Ohm’s Law Wheel</a></li>
+<li><a href="watts-volts-amps.html">Watts Volts Amps Calculator</a></li>
+<li><a href="power-triangle.html">Power Triangle Calculator</a></li>
+<li><a href="voltage-drop.html">Voltage Drop Calculator</a></li>
+<li><a href="dc-voltage-drop.html">DC Voltage Drop Calculator</a></li></ul>
+</section>
+</main>
+<footer class="footer">
+<p>© 2026 Morlich Co. Electrical tools for general guidance only.</p>
+</footer>
+<script>
+
+function calc(){
+ let mode=document.getElementById('mode').value, v=parseFloat(volts.value), a=parseFloat(amps.value), kwv=parseFloat(kw.value), pfv=parseFloat(pf.value);
+ if(!isFinite(v)||v<=0||!isFinite(pfv)||pfv<=0||pfv>1){out.innerHTML='<span class="warn">Enter voltage and power factor between 0 and 1.</span>';return}
+ if(mode==='amps'){
+   if(!isFinite(kwv)||kwv<=0){out.innerHTML='<span class="warn">Enter kW.</span>';return}
+   let current=(kwv*1000)/(1.732*v*pfv);
+   out.innerHTML=`<strong>Estimated Current:</strong> ${current.toFixed(2)} A`;
+ } else if(mode==='kw'){
+   if(!isFinite(a)||a<=0){out.innerHTML='<span class="warn">Enter current.</span>';return}
+   let power=(1.732*v*a*pfv)/1000;
+   out.innerHTML=`<strong>Estimated Power:</strong> ${power.toFixed(2)} kW`;
+ } else {
+   if(!isFinite(a)||a<=0){out.innerHTML='<span class="warn">Enter current.</span>';return}
+   let kva=(1.732*v*a)/1000;
+   out.innerHTML=`<strong>Estimated Apparent Power:</strong> ${kva.toFixed(2)} kVA`;
+ }
+}
+
+</script>
+</body>
+</html>

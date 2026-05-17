@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Power Triangle Calculator | Morlich Co Electrical Tools</title>
+<meta name="description" content="Calculate kW, kVA, kVAr and power factor relationships.">
+<meta name="keywords" content="power triangle calculator, power factor kVA kW kVAr">
+<link rel="stylesheet" href="morlich-electrical-tools.css">
+</head>
+<body>
+<header>
+<h1>Power Triangle Calculator</h1>
+<p>Calculate kW, kVA, kVAr and power factor relationships.</p>
+<nav>
+<a href="electrical-tools-index.html">Electrical Tools</a>
+<a href="ohms-law-wheel.html">Ohm’s Law</a>
+<a href="voltage-drop.html">Voltage Drop</a>
+<a href="power-consumption.html">Power Cost</a>
+</nav>
+</header>
+<main class="container">
+<section class="card">
+
+<div class="grid">
+<div><label>Real Power kW</label><input id="kw" type="number" step="any" placeholder="e.g. 10"></div>
+<div><label>Power Factor</label><input id="pf" type="number" step="any" placeholder="e.g. 0.8"></div>
+</div>
+<button onclick="calc()">Calculate kVA and kVAr</button>
+<div class="result" id="out">Enter kW and power factor.</div>
+
+<div class="assumptions"><strong>Assumptions:</strong> This tool uses simplified calculation methods for quick reference. Actual electrical design depends on installation method, conductor type, ambient temperature, grouping, protective device characteristics, cable route, fault conditions and the regulations in force.</div>
+<div class="disclaimer"><strong>Safety notice:</strong> Guidance only. Electrical work must be designed, installed, inspected and tested by competent persons in accordance with applicable regulations and local requirements. Do not use this tool as a substitute for professional design, certification or inspection.</div>
+</section>
+<section class="related">
+<h2>Related Electrical Tools</h2>
+<ul><li><a href="ohms-law-wheel.html">Interactive Ohm’s Law Wheel</a></li>
+<li><a href="watts-volts-amps.html">Watts Volts Amps Calculator</a></li>
+<li><a href="voltage-drop.html">Voltage Drop Calculator</a></li>
+<li><a href="dc-voltage-drop.html">DC Voltage Drop Calculator</a></li>
+<li><a href="fuse-rating.html">Fuse Rating Calculator</a></li></ul>
+</section>
+</main>
+<footer class="footer">
+<p>© 2026 Morlich Co. Electrical tools for general guidance only.</p>
+</footer>
+<script>
+
+function calc(){
+ let kw=parseFloat(document.getElementById('kw').value), pf=parseFloat(document.getElementById('pf').value);
+ if(!isFinite(kw)||kw<=0||!isFinite(pf)||pf<=0||pf>1){out.innerHTML='<span class="warn">Enter kW and a power factor between 0 and 1.</span>';return}
+ let kva=kw/pf;
+ let kvar=Math.sqrt(Math.max(kva*kva-kw*kw,0));
+ out.innerHTML=`<strong>Apparent Power:</strong> ${kva.toFixed(3)} kVA<br><strong>Reactive Power:</strong> ${kvar.toFixed(3)} kVAr<br><strong>Power Factor:</strong> ${pf.toFixed(3)}`;
+}
+
+</script>
+</body>
+</html>

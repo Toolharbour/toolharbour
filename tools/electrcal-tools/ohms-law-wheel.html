@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Ohm’s Law Wheel | Morlich Co Electrical Tools</title>
+<meta name="description" content="Calculate voltage, current, resistance and power from any two known values.">
+<meta name="keywords" content="Ohm’s Law calculator, volts amps watts resistance calculator">
+<link rel="stylesheet" href="morlich-electrical-tools.css">
+</head>
+<body>
+<header>
+<h1>Interactive Ohm’s Law Wheel</h1>
+<p>Calculate voltage, current, resistance and power from any two known values.</p>
+<nav>
+<a href="electrical-tools-index.html">Electrical Tools</a>
+<a href="ohms-law-wheel.html">Ohm’s Law</a>
+<a href="voltage-drop.html">Voltage Drop</a>
+<a href="power-consumption.html">Power Cost</a>
+</nav>
+</header>
+<main class="container">
+<section class="card">
+
+<div class="grid">
+<div><label>Voltage (V)</label><input id="v" type="number" step="any" placeholder="e.g. 230"></div>
+<div><label>Current (A)</label><input id="i" type="number" step="any" placeholder="e.g. 5"></div>
+<div><label>Resistance (Ω)</label><input id="r" type="number" step="any" placeholder="e.g. 46"></div>
+<div><label>Power (W)</label><input id="p" type="number" step="any" placeholder="e.g. 1150"></div>
+</div>
+<button onclick="calc()">Calculate from any two values</button>
+<div class="result" id="out">Enter any two values. Results will appear here.</div>
+
+<div class="assumptions"><strong>Assumptions:</strong> This tool uses simplified calculation methods for quick reference. Actual electrical design depends on installation method, conductor type, ambient temperature, grouping, protective device characteristics, cable route, fault conditions and the regulations in force.</div>
+<div class="disclaimer"><strong>Safety notice:</strong> Guidance only. Electrical work must be designed, installed, inspected and tested by competent persons in accordance with applicable regulations and local requirements. Do not use this tool as a substitute for professional design, certification or inspection.</div>
+</section>
+<section class="related">
+<h2>Related Electrical Tools</h2>
+<ul><li><a href="watts-volts-amps.html">Watts Volts Amps Calculator</a></li>
+<li><a href="power-triangle.html">Power Triangle Calculator</a></li>
+<li><a href="voltage-drop.html">Voltage Drop Calculator</a></li>
+<li><a href="dc-voltage-drop.html">DC Voltage Drop Calculator</a></li>
+<li><a href="fuse-rating.html">Fuse Rating Calculator</a></li></ul>
+</section>
+</main>
+<footer class="footer">
+<p>© 2026 Morlich Co. Electrical tools for general guidance only.</p>
+</footer>
+<script>
+
+function val(id){let x=parseFloat(document.getElementById(id).value);return isFinite(x)&&x>0?x:null}
+function calc(){
+ let v=val('v'), i=val('i'), r=val('r'), p=val('p');
+ let known=[v,i,r,p].filter(x=>x!==null).length;
+ if(known<2){out.innerHTML='<span class="warn">Enter at least two positive values.</span>';return}
+ if(v&&i){p=v*i;r=v/i}
+ else if(v&&r){i=v/r;p=v*i}
+ else if(v&&p){i=p/v;r=v/i}
+ else if(i&&r){v=i*r;p=v*i}
+ else if(i&&p){v=p/i;r=v/i}
+ else if(r&&p){i=Math.sqrt(p/r);v=i*r}
+ out.innerHTML=`<strong>Voltage:</strong> ${v.toFixed(3)} V<br><strong>Current:</strong> ${i.toFixed(3)} A<br><strong>Resistance:</strong> ${r.toFixed(3)} Ω<br><strong>Power:</strong> ${p.toFixed(3)} W`;
+}
+
+</script>
+</body>
+</html>

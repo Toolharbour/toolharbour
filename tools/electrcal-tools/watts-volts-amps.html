@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watts Volts Amps Calculator | Morlich Co Electrical Tools</title>
+<meta name="description" content="Convert between watts, volts and amps for DC, single-phase and three-phase loads.">
+<meta name="keywords" content="watts to amps calculator, volts amps watts calculator">
+<link rel="stylesheet" href="morlich-electrical-tools.css">
+</head>
+<body>
+<header>
+<h1>Watts Volts Amps Calculator</h1>
+<p>Convert between watts, volts and amps for DC, single-phase and three-phase loads.</p>
+<nav>
+<a href="electrical-tools-index.html">Electrical Tools</a>
+<a href="ohms-law-wheel.html">Ohm’s Law</a>
+<a href="voltage-drop.html">Voltage Drop</a>
+<a href="power-consumption.html">Power Cost</a>
+</nav>
+</header>
+<main class="container">
+<section class="card">
+
+<div class="grid">
+<div><label>Known Value 1</label><select id="mode"><option value="amps">Find Amps</option><option value="watts">Find Watts</option><option value="volts">Find Volts</option></select></div>
+<div><label>System</label><select id="system"><option value="dc">DC / Single Phase Simple</option><option value="three">Three Phase</option></select></div>
+<div><label>Watts (W)</label><input id="watts" type="number" step="any" placeholder="e.g. 2000"></div>
+<div><label>Volts (V)</label><input id="volts" type="number" step="any" placeholder="e.g. 230 or 400"></div>
+<div><label>Amps (A)</label><input id="amps" type="number" step="any" placeholder="e.g. 8.7"></div>
+<div><label>Power Factor</label><input id="pf" type="number" step="any" value="1" placeholder="0.8 to 1"></div>
+</div>
+<button onclick="calc()">Calculate</button>
+<div class="result" id="out">Select what to find and enter the other values.</div>
+
+<div class="assumptions"><strong>Assumptions:</strong> This tool uses simplified calculation methods for quick reference. Actual electrical design depends on installation method, conductor type, ambient temperature, grouping, protective device characteristics, cable route, fault conditions and the regulations in force.</div>
+<div class="disclaimer"><strong>Safety notice:</strong> Guidance only. Electrical work must be designed, installed, inspected and tested by competent persons in accordance with applicable regulations and local requirements. Do not use this tool as a substitute for professional design, certification or inspection.</div>
+</section>
+<section class="related">
+<h2>Related Electrical Tools</h2>
+<ul><li><a href="ohms-law-wheel.html">Interactive Ohm’s Law Wheel</a></li>
+<li><a href="power-triangle.html">Power Triangle Calculator</a></li>
+<li><a href="voltage-drop.html">Voltage Drop Calculator</a></li>
+<li><a href="dc-voltage-drop.html">DC Voltage Drop Calculator</a></li>
+<li><a href="fuse-rating.html">Fuse Rating Calculator</a></li></ul>
+</section>
+</main>
+<footer class="footer">
+<p>© 2026 Morlich Co. Electrical tools for general guidance only.</p>
+</footer>
+<script>
+
+function n(id){let x=parseFloat(document.getElementById(id).value);return isFinite(x)&&x>0?x:null}
+function calc(){
+ let mode=document.getElementById('mode').value, system=document.getElementById('system').value;
+ let w=n('watts'), v=n('volts'), a=n('amps'), pf=n('pf')||1;
+ let factor=system==='three'?1.732:1;
+ if(mode==='amps'){
+   if(!w||!v){out.innerHTML='<span class="warn">Enter watts and volts.</span>';return}
+   a=w/(factor*v*pf);
+   out.innerHTML=`<strong>Current:</strong> ${a.toFixed(3)} A`;
+ } else if(mode==='watts'){
+   if(!a||!v){out.innerHTML='<span class="warn">Enter amps and volts.</span>';return}
+   w=factor*v*a*pf;
+   out.innerHTML=`<strong>Power:</strong> ${w.toFixed(2)} W`;
+ } else {
+   if(!w||!a){out.innerHTML='<span class="warn">Enter watts and amps.</span>';return}
+   v=w/(factor*a*pf);
+   out.innerHTML=`<strong>Voltage:</strong> ${v.toFixed(2)} V`;
+ }
+}
+
+</script>
+</body>
+</html>

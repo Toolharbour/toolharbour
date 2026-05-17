@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DC Voltage Drop Calculator | Morlich Co Electrical Tools</title>
+<meta name="description" content="Estimate DC voltage drop for battery, solar, vehicle and low-voltage circuits.">
+<meta name="keywords" content="DC voltage drop calculator, 12V cable voltage drop">
+<link rel="stylesheet" href="morlich-electrical-tools.css">
+</head>
+<body>
+<header>
+<h1>DC Voltage Drop Calculator</h1>
+<p>Estimate DC voltage drop for battery, solar, vehicle and low-voltage circuits.</p>
+<nav>
+<a href="electrical-tools-index.html">Electrical Tools</a>
+<a href="ohms-law-wheel.html">Ohm’s Law</a>
+<a href="voltage-drop.html">Voltage Drop</a>
+<a href="power-consumption.html">Power Cost</a>
+</nav>
+</header>
+<main class="container">
+<section class="card">
+
+<div class="grid">
+<div><label>DC Voltage (V)</label><input id="volts" type="number" step="any" value="12"></div>
+<div><label>Current (A)</label><input id="amps" type="number" step="any" placeholder="e.g. 15"></div>
+<div><label>One-way Cable Length (m)</label><input id="length" type="number" step="any" placeholder="e.g. 5"></div>
+<div><label>Conductor Size (mm²)</label><input id="size" type="number" step="any" placeholder="e.g. 4"></div>
+</div>
+<button onclick="calc()">Calculate DC Drop</button>
+<div class="result" id="out">Results will appear here.</div>
+
+<div class="assumptions"><strong>Assumptions:</strong> This tool uses simplified calculation methods for quick reference. Actual electrical design depends on installation method, conductor type, ambient temperature, grouping, protective device characteristics, cable route, fault conditions and the regulations in force.</div>
+<div class="disclaimer"><strong>Safety notice:</strong> Guidance only. Electrical work must be designed, installed, inspected and tested by competent persons in accordance with applicable regulations and local requirements. Do not use this tool as a substitute for professional design, certification or inspection.</div>
+</section>
+<section class="related">
+<h2>Related Electrical Tools</h2>
+<ul><li><a href="ohms-law-wheel.html">Interactive Ohm’s Law Wheel</a></li>
+<li><a href="watts-volts-amps.html">Watts Volts Amps Calculator</a></li>
+<li><a href="power-triangle.html">Power Triangle Calculator</a></li>
+<li><a href="voltage-drop.html">Voltage Drop Calculator</a></li>
+<li><a href="fuse-rating.html">Fuse Rating Calculator</a></li></ul>
+</section>
+</main>
+<footer class="footer">
+<p>© 2026 Morlich Co. Electrical tools for general guidance only.</p>
+</footer>
+<script>
+
+function calc(){
+ let v=parseFloat(volts.value), a=parseFloat(amps.value), l=parseFloat(length.value), s=parseFloat(size.value);
+ if([v,a,l,s].some(x=>!isFinite(x)||x<=0)){out.innerHTML='<span class="warn">Enter positive voltage, current, length and cable size.</span>';return}
+ let drop=(2*a*l*0.0175)/s;
+ let pct=(drop/v)*100;
+ out.innerHTML=`<strong>DC Voltage Drop:</strong> ${drop.toFixed(3)} V<br><strong>Percentage Drop:</strong> ${pct.toFixed(2)}%<br>${pct>3?'<span class="warn">Low-voltage circuits are sensitive to drop. Review cable size.</span>':'<span class="pass">Estimated drop is modest.</span>'}`;
+}
+
+</script>
+</body>
+</html>

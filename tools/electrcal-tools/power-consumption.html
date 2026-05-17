@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Power Consumption Calculator | Morlich Co Electrical Tools</title>
+<meta name="description" content="Calculate energy use and running cost from watts, hours and electricity tariff.">
+<meta name="keywords" content="power consumption calculator, kWh cost calculator">
+<link rel="stylesheet" href="morlich-electrical-tools.css">
+</head>
+<body>
+<header>
+<h1>Power Consumption Calculator</h1>
+<p>Calculate energy use and running cost from watts, hours and electricity tariff.</p>
+<nav>
+<a href="electrical-tools-index.html">Electrical Tools</a>
+<a href="ohms-law-wheel.html">Ohm’s Law</a>
+<a href="voltage-drop.html">Voltage Drop</a>
+<a href="power-consumption.html">Power Cost</a>
+</nav>
+</header>
+<main class="container">
+<section class="card">
+
+<div class="grid">
+<div><label>Power (W)</label><input id="watts" type="number" step="any" placeholder="e.g. 1500"></div>
+<div><label>Hours per Day</label><input id="hours" type="number" step="any" placeholder="e.g. 3"></div>
+<div><label>Cost per kWh</label><input id="rate" type="number" step="any" placeholder="e.g. 0.28"></div>
+</div>
+<button onclick="calc()">Calculate Running Cost</button>
+<div class="result" id="out">Results will appear here.</div>
+
+<div class="assumptions"><strong>Assumptions:</strong> This tool uses simplified calculation methods for quick reference. Actual electrical design depends on installation method, conductor type, ambient temperature, grouping, protective device characteristics, cable route, fault conditions and the regulations in force.</div>
+<div class="disclaimer"><strong>Safety notice:</strong> Guidance only. Electrical work must be designed, installed, inspected and tested by competent persons in accordance with applicable regulations and local requirements. Do not use this tool as a substitute for professional design, certification or inspection.</div>
+</section>
+<section class="related">
+<h2>Related Electrical Tools</h2>
+<ul><li><a href="ohms-law-wheel.html">Interactive Ohm’s Law Wheel</a></li>
+<li><a href="watts-volts-amps.html">Watts Volts Amps Calculator</a></li>
+<li><a href="power-triangle.html">Power Triangle Calculator</a></li>
+<li><a href="voltage-drop.html">Voltage Drop Calculator</a></li>
+<li><a href="dc-voltage-drop.html">DC Voltage Drop Calculator</a></li></ul>
+</section>
+</main>
+<footer class="footer">
+<p>© 2026 Morlich Co. Electrical tools for general guidance only.</p>
+</footer>
+<script>
+
+function calc(){
+ let w=parseFloat(watts.value), h=parseFloat(hours.value), r=parseFloat(rate.value);
+ if([w,h,r].some(x=>!isFinite(x)||x<0)||w===0){out.innerHTML='<span class="warn">Enter power, daily hours and tariff.</span>';return}
+ let daily=(w*h)/1000, monthly=daily*30, yearly=daily*365;
+ out.innerHTML=`<strong>Daily Use:</strong> ${daily.toFixed(3)} kWh<br><strong>Monthly Use:</strong> ${monthly.toFixed(2)} kWh<br><strong>Yearly Use:</strong> ${yearly.toFixed(2)} kWh<br><strong>Daily Cost:</strong> £${(daily*r).toFixed(2)}<br><strong>Monthly Cost:</strong> £${(monthly*r).toFixed(2)}<br><strong>Yearly Cost:</strong> £${(yearly*r).toFixed(2)}`;
+}
+
+</script>
+</body>
+</html>

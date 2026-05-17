@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Battery Runtime Calculator | Morlich Co Electrical Tools</title>
+<meta name="description" content="Estimate battery runtime from battery capacity, voltage, load and usable capacity.">
+<meta name="keywords" content="battery runtime calculator, Ah Wh runtime calculator">
+<link rel="stylesheet" href="morlich-electrical-tools.css">
+</head>
+<body>
+<header>
+<h1>Battery Runtime Calculator</h1>
+<p>Estimate battery runtime from battery capacity, voltage, load and usable capacity.</p>
+<nav>
+<a href="electrical-tools-index.html">Electrical Tools</a>
+<a href="ohms-law-wheel.html">Ohm’s Law</a>
+<a href="voltage-drop.html">Voltage Drop</a>
+<a href="power-consumption.html">Power Cost</a>
+</nav>
+</header>
+<main class="container">
+<section class="card">
+
+<div class="grid">
+<div><label>Battery Capacity (Ah)</label><input id="ah" type="number" step="any" placeholder="e.g. 100"></div>
+<div><label>Battery Voltage (V)</label><input id="volts" type="number" step="any" placeholder="e.g. 12"></div>
+<div><label>Load (W)</label><input id="watts" type="number" step="any" placeholder="e.g. 120"></div>
+<div><label>Usable Capacity (%)</label><input id="usable" type="number" step="any" value="80"></div>
+</div>
+<button onclick="calc()">Calculate Runtime</button>
+<div class="result" id="out">Results will appear here.</div>
+
+<div class="assumptions"><strong>Assumptions:</strong> This tool uses simplified calculation methods for quick reference. Actual electrical design depends on installation method, conductor type, ambient temperature, grouping, protective device characteristics, cable route, fault conditions and the regulations in force.</div>
+<div class="disclaimer"><strong>Safety notice:</strong> Guidance only. Electrical work must be designed, installed, inspected and tested by competent persons in accordance with applicable regulations and local requirements. Do not use this tool as a substitute for professional design, certification or inspection.</div>
+</section>
+<section class="related">
+<h2>Related Electrical Tools</h2>
+<ul><li><a href="ohms-law-wheel.html">Interactive Ohm’s Law Wheel</a></li>
+<li><a href="watts-volts-amps.html">Watts Volts Amps Calculator</a></li>
+<li><a href="power-triangle.html">Power Triangle Calculator</a></li>
+<li><a href="voltage-drop.html">Voltage Drop Calculator</a></li>
+<li><a href="dc-voltage-drop.html">DC Voltage Drop Calculator</a></li></ul>
+</section>
+</main>
+<footer class="footer">
+<p>© 2026 Morlich Co. Electrical tools for general guidance only.</p>
+</footer>
+<script>
+
+function calc(){
+ let ah=parseFloat(document.getElementById('ah').value), v=parseFloat(volts.value), w=parseFloat(watts.value), u=parseFloat(usable.value);
+ if([ah,v,w,u].some(x=>!isFinite(x)||x<=0)){out.innerHTML='<span class="warn">Enter positive values.</span>';return}
+ let wh=ah*v*(u/100);
+ let runtime=wh/w;
+ out.innerHTML=`<strong>Usable Energy:</strong> ${wh.toFixed(1)} Wh<br><strong>Estimated Runtime:</strong> ${runtime.toFixed(2)} hours<br><span class="warn">Real runtime varies with battery type, age, inverter efficiency, temperature and discharge limits.</span>`;
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fuse Rating Calculator | Morlich Co Electrical Tools</title>
+<meta name="description" content="Estimate a fuse rating from load current and design margin.">
+<meta name="keywords" content="fuse rating calculator, fuse size calculator">
+<link rel="stylesheet" href="morlich-electrical-tools.css">
+</head>
+<body>
+<header>
+<h1>Fuse Rating Calculator</h1>
+<p>Estimate a fuse rating from load current and design margin.</p>
+<nav>
+<a href="electrical-tools-index.html">Electrical Tools</a>
+<a href="ohms-law-wheel.html">Ohm’s Law</a>
+<a href="voltage-drop.html">Voltage Drop</a>
+<a href="power-consumption.html">Power Cost</a>
+</nav>
+</header>
+<main class="container">
+<section class="card">
+
+<div class="grid">
+<div><label>Normal Load Current (A)</label><input id="amps" type="number" step="any" placeholder="e.g. 12"></div>
+<div><label>Design Margin</label><select id="margin"><option value="1.25">25% margin</option><option value="1.10">10% margin</option><option value="1.50">50% margin</option></select></div>
+</div>
+<button onclick="calc()">Estimate Fuse Rating</button>
+<div class="result" id="out">Results will appear here.</div>
+
+<div class="assumptions"><strong>Assumptions:</strong> This tool uses simplified calculation methods for quick reference. Actual electrical design depends on installation method, conductor type, ambient temperature, grouping, protective device characteristics, cable route, fault conditions and the regulations in force.</div>
+<div class="disclaimer"><strong>Safety notice:</strong> Guidance only. Electrical work must be designed, installed, inspected and tested by competent persons in accordance with applicable regulations and local requirements. Do not use this tool as a substitute for professional design, certification or inspection.</div>
+</section>
+<section class="related">
+<h2>Related Electrical Tools</h2>
+<ul><li><a href="ohms-law-wheel.html">Interactive Ohm’s Law Wheel</a></li>
+<li><a href="watts-volts-amps.html">Watts Volts Amps Calculator</a></li>
+<li><a href="power-triangle.html">Power Triangle Calculator</a></li>
+<li><a href="voltage-drop.html">Voltage Drop Calculator</a></li>
+<li><a href="dc-voltage-drop.html">DC Voltage Drop Calculator</a></li></ul>
+</section>
+</main>
+<footer class="footer">
+<p>© 2026 Morlich Co. Electrical tools for general guidance only.</p>
+</footer>
+<script>
+
+const common=[1,2,3,5,7.5,10,13,15,16,20,25,30,32,40,45,50,63,80,100,125,160,200];
+function calc(){
+ let a=parseFloat(amps.value), m=parseFloat(margin.value);
+ if(!isFinite(a)||a<=0){out.innerHTML='<span class="warn">Enter a positive load current.</span>';return}
+ let target=a*m;
+ let next=common.find(x=>x>=target)||Math.ceil(target);
+ out.innerHTML=`<strong>Calculated Minimum:</strong> ${target.toFixed(2)} A<br><strong>Nearest Common Rating:</strong> ${next} A<br><span class="warn">Cable capacity, fault protection, inrush current and regulations must be checked.</span>`;
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voltage Drop Calculator | Morlich Co Electrical Tools</title>
+<meta name="description" content="Estimate AC voltage drop using cable size, length, current and conductor material.">
+<meta name="keywords" content="voltage drop calculator, cable voltage drop calculator">
+<link rel="stylesheet" href="morlich-electrical-tools.css">
+</head>
+<body>
+<header>
+<h1>Voltage Drop Calculator</h1>
+<p>Estimate AC voltage drop using cable size, length, current and conductor material.</p>
+<nav>
+<a href="electrical-tools-index.html">Electrical Tools</a>
+<a href="ohms-law-wheel.html">Ohm’s Law</a>
+<a href="voltage-drop.html">Voltage Drop</a>
+<a href="power-consumption.html">Power Cost</a>
+</nav>
+</header>
+<main class="container">
+<section class="card">
+
+<div class="grid">
+<div><label>Supply Voltage (V)</label><input id="volts" type="number" step="any" value="230"></div>
+<div><label>Current (A)</label><input id="amps" type="number" step="any" placeholder="e.g. 20"></div>
+<div><label>One-way Cable Length (m)</label><input id="length" type="number" step="any" placeholder="e.g. 25"></div>
+<div><label>Conductor Size (mm²)</label><input id="size" type="number" step="any" placeholder="e.g. 2.5"></div>
+<div><label>Material</label><select id="mat"><option value="0.0175">Copper</option><option value="0.0282">Aluminium</option></select></div>
+</div>
+<button onclick="calc()">Calculate Voltage Drop</button>
+<div class="result" id="out">Results will appear here.</div>
+
+<div class="assumptions"><strong>Assumptions:</strong> This tool uses simplified calculation methods for quick reference. Actual electrical design depends on installation method, conductor type, ambient temperature, grouping, protective device characteristics, cable route, fault conditions and the regulations in force.</div>
+<div class="disclaimer"><strong>Safety notice:</strong> Guidance only. Electrical work must be designed, installed, inspected and tested by competent persons in accordance with applicable regulations and local requirements. Do not use this tool as a substitute for professional design, certification or inspection.</div>
+</section>
+<section class="related">
+<h2>Related Electrical Tools</h2>
+<ul><li><a href="ohms-law-wheel.html">Interactive Ohm’s Law Wheel</a></li>
+<li><a href="watts-volts-amps.html">Watts Volts Amps Calculator</a></li>
+<li><a href="power-triangle.html">Power Triangle Calculator</a></li>
+<li><a href="dc-voltage-drop.html">DC Voltage Drop Calculator</a></li>
+<li><a href="fuse-rating.html">Fuse Rating Calculator</a></li></ul>
+</section>
+</main>
+<footer class="footer">
+<p>© 2026 Morlich Co. Electrical tools for general guidance only.</p>
+</footer>
+<script>
+
+function calc(){
+ let v=parseFloat(volts.value), a=parseFloat(amps.value), l=parseFloat(length.value), s=parseFloat(size.value), rho=parseFloat(mat.value);
+ if([v,a,l,s].some(x=>!isFinite(x)||x<=0)){out.innerHTML='<span class="warn">Enter positive voltage, current, length and cable size.</span>';return}
+ let drop=(2*a*l*rho)/s;
+ let pct=(drop/v)*100;
+ let status=pct>5?'<span class="fail">High drop - review design.</span>':pct>3?'<span class="warn">Moderate drop - check limits.</span>':'<span class="pass">Low estimated drop.</span>';
+ out.innerHTML=`<strong>Voltage Drop:</strong> ${drop.toFixed(3)} V<br><strong>Percentage Drop:</strong> ${pct.toFixed(2)}%<br>${status}`;
+}
+
+</script>
+</body>
+</html>
